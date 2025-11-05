@@ -1,0 +1,100 @@
+# Building an AI-Powered Chatbot with Firebase and MiniMax
+
+Discover how we built Viber AI Chatbot using cutting-edge technologies.
+
+**Published:** November 6, 2025  
+**Author:** Viber Team  
+**Tags:** AI, Development, Firebase, MiniMax, Next.js
+
+## Introduction
+
+In the rapidly evolving world of artificial intelligence, creating a chatbot that's both powerful and user-friendly presents unique challenges. In this post, we'll dive deep into how we built Viber AI Chatbot, combining Firebase authentication with MiniMax AI to create a seamless experience.
+
+## Technology Stack
+
+Our choice of technologies was driven by performance, developer experience, and scalability:
+
+- **Next.js 14**: For server-side rendering and optimal performance
+- **TypeScript**: Type safety across the entire application
+- **Firebase Auth**: Secure, scalable authentication
+- **MiniMax AI**: Advanced language model with streaming support
+- **Tailwind CSS**: Rapid UI development
+- **Framer Motion**: Smooth animations
+
+## Key Features
+
+### 1. Real-Time AI Streaming
+
+One of our most impressive features is real-time streaming responses. Instead of waiting for the entire response, users see the AI's thoughts unfold character by character.
+
+```typescript
+const reader = response.body?.getReader();
+const decoder = new TextDecoder();
+
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) break;
+  
+  const chunk = decoder.decode(value);
+  // Update UI with new content
+}
+```
+
+### 2. Live Code Preview
+
+We implemented a secure sandbox for executing user-generated code:
+
+```typescript
+<iframe
+  srcDoc={previewHtml}
+  sandbox="allow-scripts"
+  className="w-full h-full"
+/>
+```
+
+### 3. Firebase Integration
+
+Authentication was crucial for security and personalization:
+
+```typescript
+const { signIn, signUp, signInWithGoogle } = useAuth();
+```
+
+## Challenges We Faced
+
+### Building at Scale
+
+Handling streaming responses while maintaining React's rendering optimization required careful state management.
+
+### Security Considerations
+
+Executing user-generated code safely meant implementing multiple layers of sandboxing and validation.
+
+### Performance Optimization
+
+Balancing real-time updates with smooth animations required fine-tuning our render cycles.
+
+## Lessons Learned
+
+1. **Start with MVP**: We began with core chat functionality before adding preview features
+2. **User feedback matters**: Early testing revealed the need for better loading states
+3. **TypeScript saves time**: Caught bugs during development instead of production
+4. **Performance budgets**: Setting metrics early prevented bloat
+
+## What's Next
+
+We're working on:
+- Voice input support
+- Multi-language interface
+- Team collaboration features
+- Custom AI model selection
+
+## Conclusion
+
+Building Viber AI Chatbot taught us that combining powerful APIs with thoughtful UX creates magic. The key is balancing feature richness with simplicity.
+
+Want to try it yourself? [Get started now](/docs/getting-started)
+
+---
+
+**Share your thoughts in our [community](/community)!**

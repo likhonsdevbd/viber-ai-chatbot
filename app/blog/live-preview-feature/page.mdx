@@ -1,0 +1,102 @@
+# Introducing Live Code Preview: See Your Ideas Come to Life
+
+Learn about our new live preview feature that lets you execute code in real-time.
+
+**Published:** November 5, 2025  
+**Author:** Viber Team  
+**Tags:** Features, Code Preview, Updates
+
+## The Power of Instant Feedback
+
+We're excited to announce our live code preview feature - a game-changer for developers and learners alike!
+
+## What Is Live Preview?
+
+Live Preview lets you see HTML, JavaScript, and React code execute in real-time within a secure sandbox environment.
+
+### Key Features
+
+1. **Auto-Detection**: Code blocks are automatically detected in AI responses
+2. **Multiple Formats**: Support for HTML, JavaScript, and React
+3. **Secure Execution**: Sandboxed iframe prevents malicious code
+4. **Instant Updates**: Preview updates as the AI generates code
+
+## How It Works
+
+When the AI generates code, our system:
+
+1. Detects code blocks using regex patterns
+2. Generates a secure HTML document
+3. Renders it in an isolated iframe
+4. Provides clear/reset functionality
+
+### Example Use Cases
+
+**Learning HTML:**
+```html
+<div class="card">
+  <h2>Hello World</h2>
+  <p>My first web page!</p>
+</div>
+```
+
+**Testing JavaScript:**
+```javascript
+console.log('Testing array methods');
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(n => n * 2);
+console.log(doubled);
+```
+
+**Building UI Components:**
+```jsx
+function Button({ children }) {
+  return (
+    <button className="btn-primary">
+      {children}
+    </button>
+  );
+}
+```
+
+## Security First
+
+We take security seriously:
+- Sandboxed iframe execution
+- Content Security Policy headers
+- No access to parent window
+- Isolated execution context
+
+## Performance Optimizations
+
+- Lazy loading of preview content
+- Efficient re-rendering
+- Minimal memory footprint
+- Fast iframe initialization
+
+## What Users Are Saying
+
+> "The live preview changed how I learn web development. Seeing code execute instantly is incredible!" - Sarah K.
+
+> "As an educator, this helps me demonstrate concepts in real-time during lessons." - Michael R.
+
+## Try It Now
+
+Ask the AI to generate:
+- "Create a responsive card component"
+- "Show me a gradient background example"
+- "Build a simple counter in JavaScript"
+
+## Future Enhancements
+
+We're planning:
+- CSS preprocessor support
+- npm package imports
+- Multi-file projects
+- Preview sharing
+
+## Conclusion
+
+Live Preview represents our commitment to making AI interactions more visual and interactive. We can't wait to see what you build!
+
+[Start creating](/docs/getting-started)

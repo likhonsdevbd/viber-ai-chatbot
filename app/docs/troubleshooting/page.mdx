@@ -1,0 +1,172 @@
+# Troubleshooting
+
+Common issues and solutions for Viber AI Chatbot.
+
+## Authentication Issues
+
+### Cannot Sign In with Email/Password
+
+**Problem:** Login fails with incorrect credentials error.
+
+**Solutions:**
+1. Verify email and password are correct
+2. Check if email is verified (check inbox)
+3. Try password reset if needed
+4. Clear browser cache and cookies
+5. Disable browser extensions
+
+### Google OAuth Not Working
+
+**Problem:** Google sign-in button doesn't respond or fails.
+
+**Solutions:**
+1. Check popup blockers (allow popups for this site)
+2. Ensure third-party cookies are enabled
+3. Try a different browser
+4. Check Firebase console for OAuth configuration
+
+### Session Expires Frequently
+
+**Problem:** User gets logged out unexpectedly.
+
+**Solutions:**
+1. Check browser cookie settings
+2. Ensure "Remember me" is enabled
+3. Check Firebase token expiration settings
+4. Clear site data and re-login
+
+## Chat Issues
+
+### AI Not Responding
+
+**Problem:** Messages sent but no AI response received.
+
+**Solutions:**
+1. Check internet connection
+2. Verify API key is configured correctly
+3. Check browser console for errors
+4. Try refreshing the page
+5. Check API rate limits
+
+### Streaming Response Interrupted
+
+**Problem:** AI response cuts off mid-sentence.
+
+**Solutions:**
+1. Check network stability
+2. Increase timeout settings
+3. Try shorter prompts
+4. Check server logs for errors
+
+### Messages Not Displaying
+
+**Problem:** Chat interface is blank or messages don't appear.
+
+**Solutions:**
+1. Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
+2. Clear browser cache
+3. Check browser console for JavaScript errors
+4. Disable ad blockers
+
+## File Upload Issues
+
+### Upload Fails
+
+**Problem:** File upload button doesn't work or upload fails.
+
+**Solutions:**
+1. Check file size (max 10MB)
+2. Verify file type is supported
+3. Try a different file
+4. Check browser permissions
+5. Check network connection
+
+### File Preview Not Showing
+
+**Problem:** Uploaded file doesn't display in chat.
+
+**Solutions:**
+1. Check file format compatibility
+2. Try re-uploading the file
+3. Clear browser cache
+4. Check console for errors
+
+## Preview Panel Issues
+
+### Live Preview Not Rendering
+
+**Problem:** Code preview panel stays blank.
+
+**Solutions:**
+1. Check if code block is properly formatted
+2. Verify code syntax is correct
+3. Try the "Generate Sample Preview" button
+4. Check browser console for errors
+5. Disable browser security extensions
+
+### Preview Shows Errors
+
+**Problem:** Preview panel displays error messages.
+
+**Solutions:**
+1. Check code syntax
+2. Verify all required libraries are included
+3. Check browser compatibility
+4. Review code in browser dev tools
+
+## Performance Issues
+
+### Slow Page Load
+
+**Solutions:**
+1. Clear browser cache
+2. Disable unnecessary extensions
+3. Check internet speed
+4. Try a different browser
+5. Check system resources
+
+### High Memory Usage
+
+**Solutions:**
+1. Close unused tabs
+2. Restart browser
+3. Clear chat history
+4. Disable heavy extensions
+
+## Build and Deployment Issues
+
+### Build Fails on Vercel
+
+**Problem:** Deployment fails with build errors.
+
+**Solutions:**
+1. Check environment variables are set
+2. Verify all dependencies are listed in package.json
+3. Check Node.js version compatibility
+4. Review build logs for specific errors
+
+### Environment Variables Not Working
+
+**Problem:** App can't access environment variables.
+
+**Solutions:**
+1. Ensure variables are prefixed with NEXT_PUBLIC_ for client-side
+2. Verify variables are set in Vercel dashboard
+3. Redeploy after setting variables
+4. Check .env.local file format
+
+## Still Need Help?
+
+If you're still experiencing issues:
+
+1. Check our [FAQ](/community/support)
+2. Search [GitHub Issues](https://github.com/your-username/viber-ai-chatbot/issues)
+3. Join our [Community](/community)
+4. Contact support
+
+When reporting an issue, please include:
+- Browser and version
+- Operating system
+- Steps to reproduce
+- Error messages (from browser console)
+- Screenshots if applicable
