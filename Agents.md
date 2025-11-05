@@ -1,229 +1,348 @@
-# Viber AI Chatbot - Agent Structure
+# Viber AI Chatbot - Agent Skills & Capabilities
 
-This document outlines the technical structure and capabilities of the Viber AI Chatbot project.
+This document outlines the discoverable capabilities and expertise of the Viber AI Chatbot system, following the Agent Skills package model from agents.md.
 
-## Project Overview
+## 🤖 Core Agent Skills
 
-Viber AI Chatbot is a sophisticated AI-powered conversational interface built with modern web technologies, featuring real-time AI responses, live code preview, and secure Firebase authentication.
+### SKILL: AI Chat Interface
+**Purpose**: Handle conversational AI interactions with streaming responses
+**Invocation Model**: Model-invoked - Autonomous decision based on user chat messages
+**Location**: `components/ChatInterface.tsx`, `app/api/chat/route.ts`
 
-## Core Technologies
+**Instructions for Claude**:
+When a user sends a chat message, automatically:
+1. Process the message through MiniMax AI with streaming responses
+2. Maintain conversation context and history
+3. Handle loading states and user feedback
+4. Execute live code preview if code blocks are detected
+5. Provide smooth, real-time conversation experience
 
-### Frontend Stack
-- **Next.js 14.2.0**: React framework with App Router for server-side rendering
-- **TypeScript 5.9.3**: Type-safe development
-- **Tailwind CSS 4.1.16**: Utility-first CSS framework
-- **Radix UI**: Accessible component primitives
-- **Framer Motion 12.23.24**: Animation library
-- **Lucide React 0.552.0**: SVG icon library
+**Supporting Files**:
+- `components/ChatInterface.tsx` - Main chat UI component
+- `app/api/chat/route.ts` - MiniMax AI integration endpoint
+- `contexts/AuthContext.tsx` - User session management
 
-### Backend Services
-- **Firebase Authentication**: Secure user authentication (email/password, Google OAuth)
-- **MiniMax AI API**: Advanced language model with streaming capabilities
-- **Next.js API Routes**: Serverless API endpoints
+**Capabilities**:
+- Real-time streaming AI responses
+- Context-aware conversation management
+- Character-by-character streaming
+- Error handling and retry logic
+- Session persistence
 
-### Development Tools
-- **Playwright 1.56.1**: End-to-end testing framework
-- **ESLint 9.39.1**: Code linting
-- **pnpm**: Fast, disk space efficient package manager
+### SKILL: Live Code Preview Execution
+**Purpose**: Execute and display generated code in real-time sandbox environment
+**Invocation Model**: Model-invoked - Automatic when AI responses contain code blocks
+**Location**: `components/ChatInterface.tsx`, `app/api/preview/route.ts`
 
-## Project Structure
+**Instructions for Claude**:
+When AI responses contain code blocks (HTML, JavaScript, React):
+1. Auto-detect code blocks in chat responses
+2. Execute code in secure iframe sandbox
+3. Display live preview with proper styling
+4. Handle different code types (HTML, JSX, plain HTML/JS)
+5. Provide clear/reset functionality
 
-```
-viber-ai-chatbot/
-├── app/                          # Next.js App Router
-│   ├── api/                      # API Routes
-│   │   ├── chat/                 # AI chat endpoint
-│   │   ├── upload/               # File upload endpoint
-│   │   └── preview/              # Code preview endpoint
-│   ├── docs/                     # Documentation pages
-│   ├── blog/                     # Blog posts
-│   ├── community/                # Community pages
-│   ├── layout.tsx                # Root layout
-│   ├── page.tsx                  # Home page
-│   └── globals.css               # Global styles
-├── components/                   # React components
-│   ├── ui/                       # Reusable UI components
-│   ├── AuthForm.tsx              # Authentication form
-│   └── ChatInterface.tsx         # Main chat interface
-├── contexts/                     # React contexts
-│   └── AuthContext.tsx           # Firebase auth context
-├── lib/                          # Utility libraries
-│   ├── firebase.ts               # Firebase configuration
-│   └── utils.ts                  # Helper functions
-├── tests/                        # Test suites
-│   └── e2e/                      # Playwright E2E tests
-├── .github/                      # GitHub configuration
-│   └── workflows/                # CI/CD pipelines
-├── public/                       # Static assets
-└── docs/                         # Project documentation
-```
+**Supporting Files**:
+- `components/ChatInterface.tsx` - Code preview UI integration
+- `app/api/preview/route.ts` - Code execution backend
+- `lib/utils.ts` - Utility functions for code processing
 
-## Skills & Capabilities
+**Capabilities**:
+- Secure sandbox iframe execution
+- Auto-detection of code blocks
+- Multiple language support (HTML, JavaScript, React)
+- Live rendering with proper styling
+- Sample preview generation for testing
 
-### SKILL: Authentication
-**Location:** `contexts/AuthContext.tsx`, `lib/firebase.ts`
+### SKILL: File Upload & Processing
+**Purpose**: Handle file attachments and process uploaded content securely
+**Invocation Model**: User-invoked through upload interface
+**Location**: `components/ChatInterface.tsx`, `app/api/upload/route.ts`
 
-Handles user authentication using Firebase:
+**Instructions for Claude**:
+When users upload files through the chat interface:
+1. Validate file types and sizes
+2. Process files with appropriate handlers
+3. Display file metadata in chat
+4. Provide file preview capabilities
+5. Handle multiple format support
+
+**Supporting Files**:
+- `components/ChatInterface.tsx` - Upload UI component
+- `app/api/upload/route.ts` - File processing endpoint
+- `lib/utils.ts` - File validation utilities
+
+**Capabilities**:
+- Multi-format support (images, PDF, TXT, JSON, CSV)
+- Base64 encoding for secure transmission
+- File metadata extraction and display
+- Drag & drop interface
+- File preview in chat messages
+
+### SKILL: Firebase Authentication Management
+**Purpose**: Secure user authentication and session handling
+**Invocation Model**: Automatic during app initialization and route navigation
+**Location**: `contexts/AuthContext.tsx`, `components/AuthForm.tsx`
+
+**Instructions for Claude**:
+During application startup and navigation:
+1. Initialize Firebase client with proper configuration
+2. Check for existing user sessions
+3. Handle authentication state changes
+4. Protect routes based on authentication status
+5. Provide seamless login/logout experience
+
+**Supporting Files**:
+- `contexts/AuthContext.tsx` - React auth context
+- `components/AuthForm.tsx` - Authentication forms
+- `lib/firebase.ts` - Firebase configuration
+
+**Capabilities**:
 - Email/password registration and login
 - Google OAuth integration
-- Session management
+- Session persistence and management
 - Protected route handling
+- User profile management
 
-**Methods:**
-- `signIn(email, password)`: Email/password login
-- `signUp(email, password)`: User registration
-- `signInWithGoogle()`: Google OAuth authentication
-- `logout()`: Sign out current user
+### SKILL: Documentation Navigation System
+**Purpose**: Provide comprehensive documentation and help resources
+**Invocation Model**: User-invoked through /docs routes
+**Location**: `app/docs/`, `components/Navigation.tsx`
 
-### SKILL: AI Chat Integration
-**Location:** `app/api/chat/route.ts`, `components/ChatInterface.tsx`
+**Instructions for Claude**:
+When users access documentation routes:
+1. Display structured documentation pages
+2. Provide navigation between doc sections
+3. Include code examples and tutorials
+4. Offer troubleshooting guidance
+5. Maintain consistent styling and layout
 
-Manages real-time AI conversations:
-- Streaming response handling
-- Message history management
-- Context-aware conversations
-- Error handling and retry logic
+**Supporting Files**:
+- `app/docs/getting-started/page.tsx` - Setup guide
+- `app/docs/features/page.tsx` - Feature overview
+- `components/Navigation.tsx` - Navigation component
 
-**Features:**
-- Character-by-character streaming
-- Conversation context preservation
-- Loading states and animations
-- Graceful error recovery
+**Capabilities**:
+- Structured documentation pages
+- Getting started guides
+- Feature overviews with examples
+- SEO-optimized content
+- Breadcrumb navigation
 
-### SKILL: File Upload
-**Location:** `app/api/upload/route.ts`
+### SKILL: Blog Content Management
+**Purpose**: Manage and display technical blog content
+**Invocation Model**: User-invoked through /blog routes
+**Location**: `app/blog/`, `components/Navigation.tsx`
 
-Processes file uploads:
-- Multi-format support (images, documents, data files)
-- File validation and sanitization
-- Base64 encoding
-- Metadata extraction
+**Instructions for Claude**:
+When users access blog routes:
+1. Display blog post listings and individual posts
+2. Handle code syntax highlighting
+3. Provide author attribution and metadata
+4. Enable social sharing capabilities
+5. Maintain consistent blog layout
 
-**Supported Formats:**
-- Images: JPG, PNG, GIF, WebP
-- Documents: PDF, TXT
-- Data: JSON, CSV
+**Supporting Files**:
+- `app/blog/building-ai-chatbot/page.tsx` - Technical tutorial
+- `app/blog/live-preview-feature/page.tsx` - Feature announcement
+- `components/Navigation.tsx` - Blog navigation
 
-### SKILL: Live Code Preview
-**Location:** `app/api/preview/route.ts`, `components/ChatInterface.tsx`
+**Capabilities**:
+- Technical blog post management
+- Code syntax highlighting with Shiki
+- SEO-optimized structure
+- Author metadata and social sharing
+- Responsive blog layout
 
-Renders code in real-time:
-- HTML rendering
-- JavaScript execution
-- React component preview
-- Secure sandbox environment
+### SKILL: Community Platform Management
+**Purpose**: Provide user support and community features
+**Invocation Model**: User-invoked through /community routes
+**Location**: `app/community/`, `components/Navigation.tsx`
 
-**Security Features:**
-- Sandboxed iframe execution
-- Content Security Policy headers
-- Isolated execution context
-- XSS protection
+**Instructions for Claude**:
+When users access community routes:
+1. Display support information and FAQ
+2. Provide contributor recognition
+3. Show user project showcases
+4. Enable social media integration
+5. Offer contact and feedback forms
 
-## Model-Invoked Capabilities
+**Supporting Files**:
+- `app/community/support/page.tsx` - FAQ and support
+- `components/Navigation.tsx` - Community navigation
+- `lib/utils.ts` - Contact form utilities
 
-### API Endpoints
+**Capabilities**:
+- FAQ and support page management
+- Contributor showcase and recognition
+- Social media integration links
+- Contact forms and feedback systems
+- Community project examples
 
-**POST /api/chat**
-- Accepts conversation messages
-- Returns streaming AI responses
-- Handles context management
+### SKILL: Navigation & Routing Control
+**Purpose**: Handle application navigation and routing seamlessly
+**Invocation Model**: Automatic during user navigation interactions
+**Location**: `components/Navigation.tsx`, `app/layout.tsx`
 
-**POST /api/upload**
-- Processes file uploads
-- Returns file metadata
-- Validates file types and sizes
+**Instructions for Claude**:
+During user navigation:
+1. Handle route changes and state updates
+2. Manage active navigation states
+3. Provide breadcrumb navigation
+4. Ensure responsive mobile navigation
+5. Maintain SEO-friendly URL structure
 
-**POST /api/preview**
-- Generates HTML preview from code
-- Supports multiple code types
-- Returns rendered output
+**Supporting Files**:
+- `components/Navigation.tsx` - Main navigation component
+- `app/layout.tsx` - Root layout with navigation
+- `app/page.tsx` - Home page routing
 
-## Testing Framework
+**Capabilities**:
+- Single-page application routing
+- Active state management
+- Breadcrumb navigation
+- Mobile-responsive design
+- URL state management
 
-### Playwright E2E Tests
-**Location:** `tests/e2e/`
+### SKILL: Testing & Quality Assurance
+**Purpose**: Comprehensive automated testing and quality validation
+**Invocation Model**: Automatic via CI/CD pipeline and manual testing
+**Location**: `tests/e2e/`, `.github/workflows/`
 
-Comprehensive test coverage:
-- Authentication flows
-- Chat functionality
+**Instructions for Claude**:
+For quality assurance and testing:
+1. Run comprehensive Playwright E2E tests
+2. Validate all user flows and interactions
+3. Test authentication, chat, and file upload
+4. Verify responsive design across devices
+5. Provide test reports and metrics
+
+**Supporting Files**:
+- `tests/e2e/` - Playwright test suites
+- `.github/workflows/ci.yml` - CI/CD pipeline
+- `playwright.config.ts` - Test configuration
+
+**Capabilities**:
+- Authentication flow testing
+- Chat functionality validation
+- File upload system testing
 - UI component validation
-- Responsive design testing
+- Cross-device responsive testing
 
-**Test Scripts:**
-- `pnpm test`: Run all tests
-- `pnpm test:ui`: Interactive UI mode
-- `pnpm test:headed`: Run with browser visible
-- `pnpm test:debug`: Debug mode
+### SKILL: Deployment & DevOps
+**Purpose**: Optimized deployment and infrastructure management
+**Invocation Model**: Automatic during deployment processes
+**Location**: `vercel.json`, `next.config.js`
 
-## CI/CD Pipeline
+**Instructions for Claude**:
+For deployment and infrastructure:
+1. Optimize build configuration for production
+2. Configure proper environment variables
+3. Set up caching and performance optimization
+4. Handle security headers and CSP
+5. Monitor deployment status and errors
 
-### GitHub Actions
-**Location:** `.github/workflows/ci.yml`
+**Supporting Files**:
+- `vercel.json` - Vercel deployment configuration
+- `next.config.js` - Next.js build optimization
+- `.env.local` - Environment variable template
 
-Automated testing and deployment:
-- Run Playwright tests on push/PR
-- Build verification
-- Artifact upload
+**Capabilities**:
+- Vercel-optimized deployment
 - Environment variable management
+- Performance optimization
+- Security configuration
+- Build artifact management
 
-## Environment Configuration
+## 🔧 Technical Architecture
 
-Required environment variables:
-```
-NEXT_PUBLIC_FIREBASE_API_KEY
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-NEXT_PUBLIC_FIREBASE_PROJECT_ID
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-NEXT_PUBLIC_FIREBASE_APP_ID
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-MINIMAX_API_KEY
-MODEL_NAME
-USE_MINIMAX
-```
+### Skill Invocation Model
+**Model-Invoked vs User-Invoked:**
+- **Model-Invoked Skills**: Claude autonomously decides when to use based on request context and skill descriptions
+  - AI Chat Interface, Live Code Preview, Authentication, Navigation, Testing, Deployment
+  
+- **User-Invoked Skills**: Explicit user interaction triggers the skill
+  - File Upload, Documentation, Blog, Community
 
-## Deployment
+### Skill Dependencies
+Each skill requires these core dependencies:
+- Firebase configuration and API keys
+- MiniMax AI API integration
+- Next.js App Router structure
+- TypeScript type safety
+- Tailwind CSS styling system
 
-### Vercel Configuration
-**Location:** `vercel.json`
+### Performance & Optimization
+- **Streaming**: Real-time response streaming for chat
+- **Static Generation**: Pre-built pages for fast loading
+- **Caching**: Intelligent caching strategies
+- **Bundle Optimization**: Optimized webpack configuration
 
-Optimized for Vercel deployment:
-- Custom headers for security
-- Cache optimization
-- Function timeouts
-- Environment variable mapping
+## 🚀 Advanced Multi-Modal Capabilities
 
-## Documentation
+### Text Processing
+- Natural language understanding and generation
+- Context-aware conversation management
+- Technical documentation processing
+- Code syntax highlighting and analysis
 
-- **Getting Started**: `/docs/getting-started`
-- **API Reference**: `/docs/api-reference`
-- **Features**: `/docs/features`
-- **Troubleshooting**: `/docs/troubleshooting`
+### Code Processing
+- HTML/JavaScript/React execution
+- Secure sandbox environment
+- Live preview rendering
+- Error handling and debugging
 
-## Community
+### File Processing
+- Multi-format support (images, documents, data)
+- Metadata extraction and validation
+- Secure file handling
+- Preview generation
 
-- **Contributors**: `/community/contributors`
-- **Support**: `/community/support`
-- **Showcase**: `/community/showcase`
+### UI Processing
+- Real-time component updates
+- Responsive design adaptation
+- Animation and interaction handling
+- Accessibility compliance
 
-## GitHub Topics
+## 📋 Skill Category Organization
 
-`ai chatbot firebase authentication minimax nextjs typescript tailwind react open-source ai-powered vercel deployment testing`
+### Core Application Skills (High Priority)
+1. **AI Chat Interface** - Primary user interaction
+2. **Authentication Management** - Security foundation
+3. **Live Code Preview** - Unique value proposition
+4. **File Upload Processing** - Enhanced functionality
 
-## Contributing
+### Content & Documentation Skills (Medium Priority)
+5. **Documentation System** - User guidance
+6. **Blog Content Management** - Community engagement
+7. **Community Platform** - User support
+8. **Navigation Control** - User experience
 
-See CONTRIBUTING.md for guidelines on:
-- Code style
-- Pull request process
-- Testing requirements
-- Documentation standards
+### Infrastructure & DevOps Skills (Supporting)
+9. **Testing & QA** - Quality assurance
+10. **Deployment & DevOps** - Production readiness
 
-## License
+## 🎯 Future Skill Expansion Roadmap
 
-MIT License - See LICENSE file for details
+### Phase 1: Enhanced AI Capabilities
+- **Voice Input Processing**: Speech-to-text integration
+- **Image Generation**: AI-powered image creation
+- **Advanced Analytics**: Usage tracking and insights
+
+### Phase 2: Community & Social Features
+- **Multi-Language Support**: Internationalization
+- **Plugin System**: Extensible skill architecture
+- **Advanced Collaboration**: Real-time co-editing
+
+### Phase 3: Enterprise Features
+- **Advanced Security**: Enterprise-grade auth
+- **API Management**: Third-party integrations
+- **Scalability**: Multi-tenant architecture
 
 ---
 
-**Last Updated:** November 6, 2025  
-**Version:** 1.0.0  
-**Maintainer:** Viber Development Team
+**Agent Skills Package Model**: This implementation follows the agents.md pattern where skills are model-invoked rather than user-invoked commands, allowing autonomous decision-making based on context and skill descriptions.
+
+**Last Updated**: November 6, 2025  
+**Version**: 2.0.0  
+**Repository**: https://github.com/likhonsdevbd/viber-ai-chatbot
